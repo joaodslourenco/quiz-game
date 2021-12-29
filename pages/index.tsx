@@ -1,6 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import Botao from '../components/Botao'
 import Questao from '../components/Questao'
 import QuestaoModel from '../model/questao'
 import RespostaModel from '../model/resposta'
@@ -15,6 +14,7 @@ const questaoMock = new QuestaoModel(1, 'Qual é a melhor cor?', [
 
 export default function Home() {
   const [questao, setQuestao] = useState(questaoMock)
+  const questaoRef = useRef()
 
   function respostaFornecida(indice: number) {
     setQuestao(questao.responderCom(indice))
@@ -30,6 +30,7 @@ export default function Home() {
     <div
       style={{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh'
@@ -37,9 +38,11 @@ export default function Home() {
     >
       <Questao
         valor={questao}
+        tempoParaResposta={5}
         respostaFornecida={respostaFornecida}
         tempoEsgotado={tempoEsgotado}
       />
+      <Botao texto="Próxima questão" href="/resultado" />
     </div>
   )
 }
