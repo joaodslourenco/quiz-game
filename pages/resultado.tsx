@@ -3,7 +3,7 @@ import Estatistica from '../components/Estatistica'
 import styles from '../styles/resultado.module.css'
 import Botao from '../components/Botao'
 
-export default function resultado() {
+export default function Resultado() {
   const router = useRouter()
   const total = +router.query.total
   const certas = +router.query.certas
